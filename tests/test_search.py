@@ -25,7 +25,7 @@ def search_by_game_title(search_page, game_title):
 
 @when(parsers.parse('I scroll "{scroll_amount:d}" times'))
 def scroll_by_number_of_times(search_page, scroll_amount):
-    pass
+    search_page.scroll_down(scroll_amount)
 
 
 @when("select a stream")
