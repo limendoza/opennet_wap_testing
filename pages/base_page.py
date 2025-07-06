@@ -9,7 +9,7 @@ import time
 
 
 class BasePage:
-    def __init__(self, webdriver):
+    def __init__(self, webdriver: WebDriver):
         self._webdriver = webdriver
         self._wait = WebDriverWait(webdriver, 10)
 

@@ -10,3 +10,5 @@ class ResultItem:
     FIRST = (
         By.XPATH, "/html/body/div[1]/main/div/ul/li[1]/a/div/div[1]/div/img")
     LAST = (By.XPATH, "/html/body")
+    ANY = (
+        By.XPATH, "//button[@class='ScCoreLink-sc-16kq0mq-0 bmaSLQ tw-link']")

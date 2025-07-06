@@ -29,15 +29,15 @@ def scroll_by_number_of_times(search_page, scroll_amount):
 
 
 @when("select a stream")
-def select_streamer():
-    pass
+def select_streamer(search_page):
+    search_page.select_stream()
 
 
 @when("wait for page load")
-def wait_page_load():
-    pass
+def wait_page_load(search_page):
+    search_page.wait_for_stream()
 
 
 @then("stream is playing and take screenshot")
-def take_screenshot():
-    pass
+def take_screenshot(search_page):
+    search_page.save_screenshot()
