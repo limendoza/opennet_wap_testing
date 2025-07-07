@@ -1,17 +1,12 @@
 import pytest
 
-
-from drivers.driver_enum import DriverEnum
-from drivers.driver_factory import DriverFactory
+from drivers.impl.chrome_driver import ChromeDriver
 
 
-def pytest_addoption(parser):
-    parser.addoption("--browser", action="store", default="CHROME_MOBILE", help="Browser to execute the tests.", choices=tuple(driver.name for driver in DriverEnum))
-    
-@pytest.fixture(scope="function")
-def webdriver(request):
-    browser = request.config.getoption("--browser")
-    webdriver = DriverFactory.get_webdriver(DriverEnum[browser])
+@pytest.fixture
+def webdriver():
+    chrome_driver = ChromeDriver()
+    chrome_driver.create_from_config("configs/drivers.yaml")
+    webdriver = chrome_driver.get_driver()
     yield webdriver
-    webdriver.quit()
-    
+    chrome_driver.destroy()

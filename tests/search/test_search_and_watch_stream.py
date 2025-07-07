@@ -1,21 +1,12 @@
 import pytest
-from pytest_bdd import scenarios, given, when, then, parsers
+from pytest_bdd import scenario, given, when, then, parsers
 
 from pages.search.page import SearchPage
 
-import time
 
-scenarios("../features/search.feature")
-
-
-@pytest.fixture
-def search_page(webdriver):
-    yield SearchPage(webdriver)
-
-
-@given("Twitch TV website")
-def setup(search_page):
-    search_page.load("https://m.twitch.tv")
+@scenario("../../features/search.feature", "Watch a stream by game title")
+def test_watch_a_stream_by_game_title():
+    pass
 
 
 @given(parsers.parse('search for "{game_title}" stream'))
