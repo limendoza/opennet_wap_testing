@@ -3,9 +3,6 @@ from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.remote.webelement import WebElement
-from selenium.webdriver import ActionChains
-
-import time
 
 
 class BasePage:
@@ -26,3 +23,6 @@ class BasePage:
     def fill(self, locator: Tuple[str, str], text: str):
         element = self.wait_until(EC.element_to_be_clickable(locator))
         element.send_keys(text)
+
+    def save_screenshot(self, file_path: str):
+        self._webdriver.save_screenshot(file_path)

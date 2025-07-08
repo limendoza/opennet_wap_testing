@@ -1,7 +1,8 @@
+import random
+from typing import Tuple
 from selenium.webdriver.common.actions.pointer_input import PointerInput
 from selenium.webdriver.common.actions.interaction import POINTER_TOUCH
 from selenium.webdriver.common.actions.action_builder import ActionBuilder
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -10,15 +11,13 @@ from locators.locators import BottomNavigation
 from pages.search.locators import InputField, ResultItem
 from pages.base_page import BasePage
 
-import time
-
 
 class SearchPage(BasePage):
 
     def navigate_and_search_by_game_title(self, game_title: str):
         self.click(BottomNavigation.BROWSE)
         self.fill(InputField.SEARCH, game_title)
-        self.click(ResultItem.FIRST)
+        self.click(ResultItem.GAME)
 
     def scroll_down(self, scroll_amount: int):
         touch_input = PointerInput(POINTER_TOUCH, "touch")
@@ -40,12 +39,18 @@ class SearchPage(BasePage):
             scroll_amount -= 1
 
     def select_stream(self):
-        elements = self._webdriver.find_elements(*ResultItem.ANY)
+        self._select_result_item(ResultItem.STREAM)
+
+    def select_streamer_profile(self):
+        self._select_result_item(ResultItem.PROFILE)
+
+    def _select_result_item(self, locator: Tuple[str, str]):
+        elements = self._webdriver.find_elements(*locator)
         elements = [
-            element for element in elements if self.is_element_in_viewport(element)]
+            element for element in elements if self._is_element_in_viewport(element)]
         elements[0].click()
 
-    def is_element_in_viewport(self, element):
+    def _is_element_in_viewport(self, element):
         return self._webdriver.execute_script("""
             var rect = arguments[0].getBoundingClientRect();
             return (
@@ -62,5 +67,5 @@ class SearchPage(BasePage):
         element = self.wait_until(lambda d: d.execute_script(
             "return arguments[0].currentTime", element) > 3)
 
-    def save_screenshot(self):
-        self._webdriver.save_screenshot("resources/screenshots/sample.png")
+    def wait_for_profile(self):
+        self.wait_until(EC.visibility_of_element_located(ResultItem.STREAM))

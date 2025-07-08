@@ -3,12 +3,13 @@ from selenium.webdriver.common.by import By
 
 class InputField:
     SEARCH = (
-        By.XPATH, "/html/body/div[1]/div[1]/div[2]/header/div/div/div/div/input")
+        By.XPATH, "//input[@type='search']")
 
 
 class ResultItem:
-    FIRST = (
-        By.XPATH, "/html/body/div[1]/main/div/ul/li[1]/a/div/div[1]/div/img")
-    LAST = (By.XPATH, "/html/body")
-    ANY = (
-        By.XPATH, "//button[@class='ScCoreLink-sc-16kq0mq-0 bmaSLQ tw-link']")
+    GAME = (
+        By.XPATH, "//a[div/div/div/img]")
+    STREAM = (
+        By.XPATH, "//article[button/div/div/img]")
+    PROFILE = (
+        By.XPATH, "//a[boolean(string(substring-before(substring-after(@href, '/'), 'home')))]")

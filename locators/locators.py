@@ -2,8 +2,7 @@ from selenium.webdriver.common.by import By
 
 
 class BottomNavigation:
-    BASE = (By.XPATH, "/html/body/div[1]/div[2]")
-    HOME = (By.XPATH, "/html/body/div[1]/div[2]/a[1]")
-    BROWSE = (By.XPATH, "/html/body/div[1]/div[2]/a[2]")
-    ACTIVITY = (By.XPATH, "/html/body/div[1]/div[2]/a[3]")
-    PROFILE = (By.XPATH, "/html/body/div[1]/div[2]/a[4]")
+    HOME = (By.XPATH, "//div[a[contains(@href, '/')]]")
+    BROWSE = (By.XPATH, "//div[a[contains(@href, '/directory')]]")
+    ACTIVITY = (By.XPATH, "//div[a[contains(@href, '/activity')]]")
+    PROFILE = (By.XPATH, "//div[a[contains(@href, '/home')]]")
