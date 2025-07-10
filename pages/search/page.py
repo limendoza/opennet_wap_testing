@@ -1,5 +1,3 @@
-import logging
-import random
 from typing import Tuple
 from selenium.webdriver.common.actions.pointer_input import PointerInput
 from selenium.webdriver.common.actions.interaction import POINTER_TOUCH

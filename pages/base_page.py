@@ -1,4 +1,3 @@
-import logging
 from typing import Callable, Tuple
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support.ui import WebDriverWait

@@ -1,8 +1,6 @@
 from abc import ABC, abstractmethod
 
 
-from selenium.webdriver.common.service import Service
-from selenium.webdriver.common.options import ArgOptions
 from selenium.webdriver.remote.webdriver import WebDriver
 
 
